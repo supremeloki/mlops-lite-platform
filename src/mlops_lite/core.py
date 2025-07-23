@@ -37,3 +37,4 @@ VALID_TRANSITIONS = {
 }
 
 
+@dataclass(frozen=True)
