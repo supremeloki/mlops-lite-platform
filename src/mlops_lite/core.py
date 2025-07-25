@@ -42,3 +42,4 @@ class MetricPoint:
     key: str
     value: float
     step: int
+    recorded_at: float
