@@ -40,3 +40,5 @@ VALID_TRANSITIONS = {
 @dataclass(frozen=True)
 class MetricPoint:
     key: str
+    value: float
+    step: int
