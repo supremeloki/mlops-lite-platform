@@ -43,3 +43,5 @@ class MetricPoint:
     value: float
     step: int
     recorded_at: float
+
+    def __str__(self) -> str:
