@@ -45,3 +45,4 @@ class MetricPoint:
     recorded_at: float
 
     def __str__(self) -> str:
+        return f"{self.key}@{self.step}={self.value:.6f}"
