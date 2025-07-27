@@ -46,3 +46,5 @@ class MetricPoint:
 
     def __str__(self) -> str:
         return f"{self.key}@{self.step}={self.value:.6f}"
+
+
