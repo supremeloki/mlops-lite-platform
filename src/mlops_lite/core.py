@@ -48,3 +48,4 @@ class MetricPoint:
         return f"{self.key}@{self.step}={self.value:.6f}"
 
 
+@dataclass
