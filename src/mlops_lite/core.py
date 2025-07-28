@@ -51,3 +51,4 @@ class MetricPoint:
 @dataclass
 class Run:
     run_id: str
+    experiment: str
