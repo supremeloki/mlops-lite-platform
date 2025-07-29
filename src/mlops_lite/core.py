@@ -52,3 +52,5 @@ class MetricPoint:
 class Run:
     run_id: str
     experiment: str
+    stage: Stage = Stage.CREATED
+    params: dict[str, Any] = field(default_factory=dict)
