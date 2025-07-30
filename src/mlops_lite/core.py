@@ -54,3 +54,5 @@ class Run:
     experiment: str
     stage: Stage = Stage.CREATED
     params: dict[str, Any] = field(default_factory=dict)
+    metrics: list[MetricPoint] = field(default_factory=list)
+    artifacts: dict[str, str] = field(default_factory=dict)
