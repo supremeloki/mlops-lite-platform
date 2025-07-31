@@ -56,3 +56,4 @@ class Run:
     params: dict[str, Any] = field(default_factory=dict)
     metrics: list[MetricPoint] = field(default_factory=list)
     artifacts: dict[str, str] = field(default_factory=dict)
+    started_at: float | None = None
