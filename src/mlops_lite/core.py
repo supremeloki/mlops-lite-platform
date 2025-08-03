@@ -59,3 +59,4 @@ class Run:
     started_at: float | None = None
     finished_at: float | None = None
 
+    @property
