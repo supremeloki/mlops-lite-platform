@@ -63,3 +63,5 @@ class Run:
     def duration_seconds(self) -> float | None:
         if self.started_at is None or self.finished_at is None:
             return None
+        return round(self.finished_at - self.started_at, 3)
+
