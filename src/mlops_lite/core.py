@@ -62,3 +62,4 @@ class Run:
     @property
     def duration_seconds(self) -> float | None:
         if self.started_at is None or self.finished_at is None:
+            return None
