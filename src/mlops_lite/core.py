@@ -65,3 +65,4 @@ class Run:
             return None
         return round(self.finished_at - self.started_at, 3)
 
+    def best(self, metric_key: str, higher_is_better: bool = True) -> MetricPoint | None:
