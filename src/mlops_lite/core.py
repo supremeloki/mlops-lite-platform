@@ -68,3 +68,5 @@ class Run:
     def best(self, metric_key: str, higher_is_better: bool = True) -> MetricPoint | None:
         points = [m for m in self.metrics if m.key == metric_key]
         if not points:
+            return None
+        return max(points, key=lambda m: m.value) if higher_is_better else min(points, key=lambda m: m.value)
