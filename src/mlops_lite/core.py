@@ -71,3 +71,5 @@ class Run:
             return None
         return max(points, key=lambda m: m.value) if higher_is_better else min(points, key=lambda m: m.value)
 
+
+class RunStore:
