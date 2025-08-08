@@ -74,3 +74,5 @@ class Run:
 
 class RunStore:
     def __init__(self, storage_path: Path | None = None) -> None:
+        self._runs: dict[str, Run] = {}
+        self._path = storage_path
