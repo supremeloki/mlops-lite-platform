@@ -73,3 +73,4 @@ class Run:
 
 
 class RunStore:
+    def __init__(self, storage_path: Path | None = None) -> None:
