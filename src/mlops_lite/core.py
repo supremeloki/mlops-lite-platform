@@ -79,3 +79,5 @@ class RunStore:
         if storage_path and storage_path.exists():
             self._load()
 
+    def create(self, experiment: str, params: dict[str, Any]) -> Run:
+        if not experiment.strip():
