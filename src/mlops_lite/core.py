@@ -77,3 +77,5 @@ class RunStore:
         self._runs: dict[str, Run] = {}
         self._path = storage_path
         if storage_path and storage_path.exists():
+            self._load()
+
