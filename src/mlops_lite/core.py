@@ -81,3 +81,4 @@ class RunStore:
 
     def create(self, experiment: str, params: dict[str, Any]) -> Run:
         if not experiment.strip():
+            raise MlopsError("experiment name required")
