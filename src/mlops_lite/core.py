@@ -82,3 +82,5 @@ class RunStore:
     def create(self, experiment: str, params: dict[str, Any]) -> Run:
         if not experiment.strip():
             raise MlopsError("experiment name required")
+        run_id = uuid.uuid4().hex[:12]
+        run = Run(run_id=run_id, experiment=experiment,
