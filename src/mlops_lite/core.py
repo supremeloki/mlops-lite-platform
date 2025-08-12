@@ -84,3 +84,4 @@ class RunStore:
             raise MlopsError("experiment name required")
         run_id = uuid.uuid4().hex[:12]
         run = Run(run_id=run_id, experiment=experiment,
+                  params=dict(params))
