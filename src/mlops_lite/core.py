@@ -85,3 +85,5 @@ class RunStore:
         run_id = uuid.uuid4().hex[:12]
         run = Run(run_id=run_id, experiment=experiment,
                   params=dict(params))
+        self._runs[run_id] = run
+        return run
