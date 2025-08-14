@@ -88,3 +88,5 @@ class RunStore:
         self._runs[run_id] = run
         return run
 
+    def get(self, run_id: str) -> Run:
+        run = self._runs.get(run_id)
