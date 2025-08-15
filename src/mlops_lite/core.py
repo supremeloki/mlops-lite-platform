@@ -91,3 +91,5 @@ class RunStore:
     def get(self, run_id: str) -> Run:
         run = self._runs.get(run_id)
         if run is None:
+            raise ExperimentNotFoundError(run_id)
+        return run
