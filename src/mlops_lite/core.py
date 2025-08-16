@@ -95,3 +95,4 @@ class RunStore:
         return run
 
     def transition(self, run_id: str, target: Stage) -> Run:
+        run = self.get(run_id)
