@@ -93,3 +93,5 @@ class RunStore:
         if run is None:
             raise ExperimentNotFoundError(run_id)
         return run
+
+    def transition(self, run_id: str, target: Stage) -> Run:
