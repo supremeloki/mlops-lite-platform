@@ -96,3 +96,5 @@ class RunStore:
 
     def transition(self, run_id: str, target: Stage) -> Run:
         run = self.get(run_id)
+        allowed = VALID_TRANSITIONS[run.stage]
+        if target not in allowed:
