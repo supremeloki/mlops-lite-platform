@@ -98,3 +98,4 @@ class RunStore:
         run = self.get(run_id)
         allowed = VALID_TRANSITIONS[run.stage]
         if target not in allowed:
+            raise InvalidStageError(f"illegal transition {run.stage.value} → {target.value}")
