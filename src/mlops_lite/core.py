@@ -101,3 +101,4 @@ class RunStore:
             raise InvalidStageError(f"illegal transition {run.stage.value} → {target.value}")
         if target == Stage.RUNNING and run.started_at is None:
             run.started_at = time.time()
+        if target in (Stage.FINISHED, Stage.FAILED):
