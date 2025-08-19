@@ -99,3 +99,5 @@ class RunStore:
         allowed = VALID_TRANSITIONS[run.stage]
         if target not in allowed:
             raise InvalidStageError(f"illegal transition {run.stage.value} → {target.value}")
+        if target == Stage.RUNNING and run.started_at is None:
+            run.started_at = time.time()
