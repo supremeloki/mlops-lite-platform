@@ -102,3 +102,5 @@ class RunStore:
         if target == Stage.RUNNING and run.started_at is None:
             run.started_at = time.time()
         if target in (Stage.FINISHED, Stage.FAILED):
+            run.finished_at = time.time()
+        run.stage = target
