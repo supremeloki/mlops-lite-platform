@@ -104,3 +104,4 @@ class RunStore:
         if target in (Stage.FINISHED, Stage.FAILED):
             run.finished_at = time.time()
         run.stage = target
+        return run
