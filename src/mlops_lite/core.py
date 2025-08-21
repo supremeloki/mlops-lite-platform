@@ -105,3 +105,5 @@ class RunStore:
             run.finished_at = time.time()
         run.stage = target
         return run
+
+    def log_metric(self, run_id: str, key: str, value: float, step: int = 0) -> MetricPoint:
