@@ -109,3 +109,4 @@ class RunStore:
     def log_metric(self, run_id: str, key: str, value: float, step: int = 0) -> MetricPoint:
         point = MetricPoint(key=key, value=value, step=step, recorded_at=time.time())
         self.get(run_id).metrics.append(point)
+        return point
