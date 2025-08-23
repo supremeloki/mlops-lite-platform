@@ -110,3 +110,5 @@ class RunStore:
         point = MetricPoint(key=key, value=value, step=step, recorded_at=time.time())
         self.get(run_id).metrics.append(point)
         return point
+
+    def log_artifact(self, run_id: str, name: str, path: str) -> None:
