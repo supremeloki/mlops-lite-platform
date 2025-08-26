@@ -88,3 +88,4 @@ def test_best_run_picks_lowest_loss():
     store = RunStore()
     trainer = Trainer(store, "sweep")
 
+    def make_train(loss):
