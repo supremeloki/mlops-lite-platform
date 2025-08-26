@@ -84,3 +84,4 @@ def test_find_by_experiment(store):
     assert {first.run_id, second.run_id} <= {r.run_id for r in found}
 
 
+def test_best_run_picks_lowest_loss():
