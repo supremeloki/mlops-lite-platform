@@ -89,3 +89,4 @@ def test_best_run_picks_lowest_loss():
     trainer = Trainer(store, "sweep")
 
     def make_train(loss):
+        return lambda params: (lambda epoch: loss)
