@@ -92,3 +92,4 @@ def test_best_run_picks_lowest_loss():
         return lambda params: (lambda epoch: loss)
 
     low_run = trainer.execute({"lr": 0.1}, make_train(0.9), epochs=2)
+    better_run = trainer.execute({"lr": 0.01}, make_train(0.2), epochs=2)
