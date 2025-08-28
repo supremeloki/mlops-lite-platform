@@ -94,3 +94,5 @@ def test_best_run_picks_lowest_loss():
     low_run = trainer.execute({"lr": 0.1}, make_train(0.9), epochs=2)
     better_run = trainer.execute({"lr": 0.01}, make_train(0.2), epochs=2)
     best = store.best_run("sweep", "loss", higher_is_better=False)
+    assert best.best("loss").value == 0.2
+    assert best.params["lr"] == 0.01
