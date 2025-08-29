@@ -97,3 +97,4 @@ def test_best_run_picks_lowest_loss():
     assert best.best("loss").value == 0.2
     assert best.params["lr"] == 0.01
     assert low_run.best("loss").value == 0.9
+
