@@ -99,3 +99,4 @@ def test_best_run_picks_lowest_loss():
     assert low_run.best("loss").value == 0.9
 
 
+def test_trainer_marks_failed_on_exception(store):
