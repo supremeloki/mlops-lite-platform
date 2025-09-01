@@ -101,3 +101,4 @@ def test_best_run_picks_lowest_loss():
 
 def test_trainer_marks_failed_on_exception(store):
     def broken(params):
+        def epoch_fn(epoch):
