@@ -105,3 +105,4 @@ def test_trainer_marks_failed_on_exception(store):
             raise RuntimeError("gpu vanished")
         return epoch_fn
 
+    trainer = Trainer(store, "fragile")
