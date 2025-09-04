@@ -106,3 +106,4 @@ def test_trainer_marks_failed_on_exception(store):
         return epoch_fn
 
     trainer = Trainer(store, "fragile")
+    run = store.create("fragile", {})
