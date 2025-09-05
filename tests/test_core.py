@@ -107,3 +107,4 @@ def test_trainer_marks_failed_on_exception(store):
 
     trainer = Trainer(store, "fragile")
     run = store.create("fragile", {})
+    with pytest.raises(RuntimeError):
