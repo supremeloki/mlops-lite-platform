@@ -111,3 +111,5 @@ def test_trainer_marks_failed_on_exception(store):
         trainer.execute({}, broken, epochs=3)
 
 
+def test_compare_runs_picks_lower_loss():
+    left = RunStore()
