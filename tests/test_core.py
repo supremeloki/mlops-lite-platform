@@ -110,3 +110,4 @@ def test_trainer_marks_failed_on_exception(store):
     with pytest.raises(RuntimeError):
         trainer.execute({}, broken, epochs=3)
 
+
