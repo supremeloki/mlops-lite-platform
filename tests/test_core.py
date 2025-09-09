@@ -115,3 +115,4 @@ def test_compare_runs_picks_lower_loss():
     left = RunStore()
     a = left.create("cmp", {})
     left.transition(a.run_id, Stage.RUNNING)
+    left.log_metric(a.run_id, "loss", 0.4)
