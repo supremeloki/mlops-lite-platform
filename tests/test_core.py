@@ -119,3 +119,5 @@ def test_compare_runs_picks_lower_loss():
     b = left.create("cmp", {})
     left.transition(b.run_id, Stage.RUNNING)
     left.log_metric(b.run_id, "loss", 0.1)
+    verdict = compare_runs(a, b, "loss")
+    assert verdict["winner"] == b.run_id
