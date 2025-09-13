@@ -121,3 +121,4 @@ def test_compare_runs_picks_lower_loss():
     left.log_metric(b.run_id, "loss", 0.1)
     verdict = compare_runs(a, b, "loss")
     assert verdict["winner"] == b.run_id
+    assert verdict["delta"] == 0.3
