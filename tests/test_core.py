@@ -122,3 +122,4 @@ def test_compare_runs_picks_lower_loss():
     verdict = compare_runs(a, b, "loss")
     assert verdict["winner"] == b.run_id
     assert verdict["delta"] == 0.3
+
