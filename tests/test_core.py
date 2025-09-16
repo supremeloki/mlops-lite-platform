@@ -124,3 +124,4 @@ def test_compare_runs_picks_lower_loss():
     assert verdict["delta"] == 0.3
 
 
+def test_file_persistence(tmp_path):
