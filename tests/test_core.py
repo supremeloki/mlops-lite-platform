@@ -126,3 +126,4 @@ def test_compare_runs_picks_lower_loss():
 
 def test_file_persistence(tmp_path):
     path = tmp_path / "store.json"
+    first = RunStore(storage_path=path)
