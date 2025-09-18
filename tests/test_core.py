@@ -128,3 +128,5 @@ def test_file_persistence(tmp_path):
     path = tmp_path / "store.json"
     first = RunStore(storage_path=path)
     run = first.create("persisted", {"lr": 0.02})
+    first.transition(run.run_id, Stage.RUNNING)
+    first.log_metric(run.run_id, "loss", 0.33)
