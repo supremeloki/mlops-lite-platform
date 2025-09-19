@@ -130,3 +130,4 @@ def test_file_persistence(tmp_path):
     run = first.create("persisted", {"lr": 0.02})
     first.transition(run.run_id, Stage.RUNNING)
     first.log_metric(run.run_id, "loss", 0.33)
+    first.save()
