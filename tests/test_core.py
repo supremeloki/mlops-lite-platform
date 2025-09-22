@@ -133,3 +133,4 @@ def test_file_persistence(tmp_path):
     first.save()
 
     reopened = RunStore(storage_path=path)
+    loaded = reopened.get(run.run_id)
