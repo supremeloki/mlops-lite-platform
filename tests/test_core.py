@@ -134,3 +134,4 @@ def test_file_persistence(tmp_path):
 
     reopened = RunStore(storage_path=path)
     loaded = reopened.get(run.run_id)
+    assert loaded.stage == Stage.RUNNING
