@@ -138,3 +138,4 @@ def test_file_persistence(tmp_path):
     assert loaded.metrics[0].value == 0.33
 
 
+def test_corrupt_store_raises(tmp_path):
