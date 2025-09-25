@@ -141,3 +141,4 @@ def test_file_persistence(tmp_path):
 def test_corrupt_store_raises(tmp_path):
     bad = tmp_path / "bad.json"
     bad.write_text("{broken", encoding="utf-8")
+    with pytest.raises(MlopsError):
