@@ -112,3 +112,88 @@ class RunStore:
         return point
 
     def log_artifact(self, run_id: str, name: str, path: str) -> None:
+        self.get(run_id).artifacts[name] = path
+
+    def find_by_experiment(self, experiment: str) -> list[Run]:
+        return [r for r in self._runs.values() if r.experiment == experiment]
+
+    def best_run(self, experiment: str, metric_key: str,
+                 higher_is_better: bool = True) -> Run | None:
+        candidates = [
+            r for r in self.find_by_experiment(experiment)
+            if r.best(metric_key) is not None
+        ]
+        if not candidates:
+            return None
+        return max(candidates, key=lambda r: (r.best(metric_key).value * (1 if higher_is_better else -1)))
+
+    def save(self) -> None:
+        if not self._path:
+            return
+        payload = {}
+        for run_id, run in self._runs.items():
+            data = asdict(run)
+            data["stage"] = run.stage.value
+            data["metrics"] = [asdict(m) for m in run.metrics]
+            payload[run_id] = data
+        self._path.parent.mkdir(parents=True, exist_ok=True)
+        with self._path.open("w", encoding="utf-8") as handle:
+            json.dump(payload, handle, indent=2)
+
+    def _load(self) -> None:
+        try:
+            payload = json.loads(self._path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            raise MlopsError(f"corrupt store: {exc}") from exc
+        for run_id, data in payload.items():
+            metrics = [MetricPoint(**m) for m in data.pop("metrics", [])]
+            data["stage"] = Stage(data["stage"])
+            run = Run(**data)
+            run.metrics = metrics
+            self._runs[run_id] = run
+
+
+class Trainer:
+    def __init__(self, store: RunStore, experiment: str) -> None:
+        self._store = store
+        self._experiment = experiment
+
+    def execute(
+        self,
+        params: dict[str, Any],
+        train_fn: Callable[[dict[str, Any]], Callable[[int], float]],
+        epochs: int,
+    ) -> Run:
+        run = self._store.create(self._experiment, params)
+        self._store.transition(run.run_id, Stage.RUNNING)
+        try:
+            epoch_fn = train_fn(params)
+            for epoch in range(epochs):
+                value = epoch_fn(epoch)
+                self._store.log_metric(run.run_id, "loss", value, step=epoch)
+            self._store.transition(run.run_id, Stage.FINISHED)
+        except Exception:
+            self._store.transition(run.run_id, Stage.FAILED)
+            raise
+        finally:
+            self._store.save()
+        return run
+
+
+def compare_runs(left: Run, right: Run, metric_key: str,
+                 higher_is_better: bool = False) -> dict[str, Any]:
+    left_best = left.best(metric_key, higher_is_better)
+    right_best = right.best(metric_key, higher_is_better)
+    if left_best is None or right_best is None:
+        raise MlopsError("both runs need the metric for comparison")
+    if higher_is_better:
+        winner = left if left_best.value >= right_best.value else right
+    else:
+        winner = left if left_best.value <= right_best.value else right
+    delta = round(abs(left_best.value - right_best.value), 6)
+    return {
+        "winner": winner.run_id,
+        "delta": delta,
+        "left": str(left_best),
+        "right": str(right_best),
+    }
